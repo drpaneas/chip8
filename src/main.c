@@ -1,9 +1,6 @@
 #include <stdio.h>
 #include "SDL2/SDL.h"
-
-// Window dimensions (the original 64x32 is very small, so scale up).
-static const int width = 640;
-static const int height = 320;
+#include "chip8.h"
 
 int main(int argc, char **argv)
 {
@@ -11,10 +8,12 @@ int main(int argc, char **argv)
 
     // Create a window
     SDL_Window *window = SDL_CreateWindow(
-        "Chip8 Window",
+        EMULATOR_WINDOW_TITLE,
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        width, height, SDL_WINDOW_SHOWN);
+        CHIP8_WIDTH * CHIP8_WINDOW_MULTIPLIER,
+        CHIP8_HEIGHT * CHIP8_WINDOW_MULTIPLIER,
+        SDL_WINDOW_SHOWN);
 
     // Create a renderer (for the window) so you can use it to draw pixels on the screen.
     SDL_Renderer *renderer = SDL_CreateRenderer(
